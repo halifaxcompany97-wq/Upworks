@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login Page</title>
+  <title>Dashboard</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -14,72 +14,69 @@
       height: 100vh;
       margin: 0;
     }
-    .login-container {
+    .dashboard {
       background: #fff;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
-      width: 320px;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0px 6px 10px rgba(0,0,0,0.15);
       text-align: center;
+      width: 400px;
     }
-    h2 {
-      margin-bottom: 20px;
+    h1 {
       color: #333;
     }
-    input {
-      width: 90%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 14px;
+    .balance-box {
+      margin: 20px 0;
+      font-size: 22px;
+      font-weight: bold;
+    }
+    .eye {
+      cursor: pointer;
+      margin-left: 10px;
+      font-size: 20px;
     }
     button {
-      width: 100%;
-      padding: 10px;
-      background: #3498db;
+      padding: 12px 20px;
+      background: #27ae60;
       color: white;
-      font-size: 16px;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
       cursor: pointer;
+      font-size: 16px;
     }
     button:hover {
-      background: #2980b9;
-    }
-    .error {
-      color: red;
-      margin-top: 10px;
+      background: #219150;
     }
   </style>
 </head>
 <body>
-  <div class="login-container">
-    <h2>Login</h2>
-    <input type="text" id="username" placeholder="Username">
-    <input type="password" id="password" placeholder="Password">
-    <button onclick="login()">Login</button>
-    <p id="message"></p>
+  <div class="dashboard">
+    <h1 id="greeting">Hi, User</h1>
+    <div class="balance-box">
+      Balance: <span id="balance">$50</span>
+      <span class="eye" onclick="toggleBalance()">👁️</span>
+    </div>
+    <button>Add Payment</button>
   </div>
 
   <script>
-    // Demo credentials (change if needed)
-    const correctUsername = "Ann";
-    const correctPassword = "1234";
+    // Get username from localStorage
+    const username = localStorage.getItem("username") || "User";
+    document.getElementById("greeting").textContent = "Hi " + Ann;
 
-    function login() {
-      let user = document.getElementById("username").value;
-      let pass = document.getElementById("password").value;
-      let msg = document.getElementById("message");
+    let balanceVisible = true;
+    function toggleBalance() {
+      const balanceEl = document.getElementById("balance");
+      const eyeEl = document.querySelector(".eye");
 
-      if (user === correctUsername && pass === correctPassword) {
-        // Store username in localStorage so dashboard can read it
-        localStorage.setItem("username", user);
-        window.location.href = "dashboard.html";
+      if (balanceVisible) {
+        balanceEl.textContent = "••••";
+        eyeEl.textContent = "🙈";
       } else {
-        msg.textContent = "Incorrect username or password!";
-        msg.className = "error";
+        balanceEl.textContent = "$50";
+        eyeEl.textContent = "👁️";
       }
+      balanceVisible = !balanceVisible;
     }
   </script>
 </body>
