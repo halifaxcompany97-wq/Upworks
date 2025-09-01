@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f6fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .dashboard {
+      background: #fff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0px 6px 10px rgba(0,0,0,0.15);
+      text-align: center;
+      width: 400px;
+    }
+    h1 {
+      color: #333;
+    }
+    .balance-box {
+      margin: 20px 0;
+      font-size: 22px;
+      font-weight: bold;
+    }
+    .eye {
+      cursor: pointer;
+      margin-left: 10px;
+      font-size: 20px;
+    }
+    button {
+      padding: 12px 20px;
+      background: #27ae60;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #219150;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+    <h1 id="greeting">Hi, User</h1>
+    <div class="balance-box">
+      Balance: <span id="balance">$50</span>
+      <span class="eye" onclick="toggleBalance()">👁️</span>
+    </div>
+    <button>Add Payment</button>
+  </div>
+
+  <script>
+    // Get username from localStorage
+    const username = localStorage.getItem("username") || "User";
+    document.getElementById("greeting").textContent = "Hi " + Ann;
+
+    let balanceVisible = true;
+    function toggleBalance() {
+      const balanceEl = document.getElementById("balance");
+      const eyeEl = document.querySelector(".eye");
+
+      if (balanceVisible) {
+        balanceEl.textContent = "••••";
+        eyeEl.textContent = "🙈";
+      } else {
+        balanceEl.textContent = "$50";
+        eyeEl.textContent = "👁️";
+      }
+      balanceVisible = !balanceVisible;
+    }
+  </script>
+</body>
+</html>
